@@ -5,11 +5,10 @@
 	padding: 20px;
 	height: 30px;
 	z-index: 1;
-	display: flex;
-	justify-content: space-between;
+	
 	/* Animation */
-	/* transition-timing-function: ease-in;
-	transition: all 0.5s; */
+	transition-timing-function: ease-in; /* sets how transition will happen*/
+	transition: all 0.5s; /* adds transition delay effect to all transition taking place in class */
 	
 }
 
