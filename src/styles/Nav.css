@@ -3,7 +3,21 @@
 	top: 0;
 	width: 100%;
 	padding: 20px;
-	height: 30px;
+	height: 20px;
+	z-index: 1;
+	
+	/* Animation */
+	transition-timing-function: ease-in; /* sets how transition will happen*/
+	transition: all 0.5s; /* adds transition delay effect to all transition taking place in class */
+	
+}
+
+.nav__loginRegister {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	padding: 20px;
+	height: 45px;
 	z-index: 1;
 	
 	/* Animation */
@@ -14,6 +28,16 @@
 
 .nav__black {
 	background-color: #111;
+}
+
+.nav__logoLoginRegister {
+	height: 45px;
+	width: 167px;
+	vertical-align: middle;
+}
+
+.nav__avatarHidden {
+	visibility: hidden;
 }
 .nav__logo {
 	position: fixed;

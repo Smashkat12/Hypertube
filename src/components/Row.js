@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import axios from "./axios";
-import "./Row.css";
+import axios from "../services/axios";
+import "../styles/Row.css";
 import YouTube from "react-youtube";
 import movieTrailer from "movie-trailer";
 
@@ -51,7 +51,7 @@ function Row({ title, fetchUrl, isLargeRow }) {
 			key={movie.id}
 			onClick={() => handleClick(movie)}
             className={`row__poster ${isLargeRow && "row__posterLarge"}`} /* if isLargeRow then add additional styling */
-            src={`${baseUrl}${isLargeRow ? movie.poster_path : movie.backdrop_path}`}
+            src={`${baseUrl}${isLargeRow ? movie.poster_path : movie.poster_path}`}
             alt={movie.name}
           />
         ))}

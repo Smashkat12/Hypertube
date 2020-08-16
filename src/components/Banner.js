@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import axios from "./axios";
-import requests from "./requests";
-import "./Banner.css";
+import axios from "../services/axios";
+import requests from "../services/requests";
+import "../styles/Banner.css";
 
-const baseUrl = "https://image.tmdb.org/t/p/original/"; /* base url for sourcing images */
-
+const baseUrl =
+  "https://image.tmdb.org/t/p/original/"; /* base url for sourcing images */
 
 function Banner() {
   const [movie, setMovie] = useState(
@@ -30,7 +30,7 @@ function Banner() {
 
   /* help to truncate text/description */
   function truncate(str, n) {
-	  return str?.length > n ? str.substr(0, n - 1) + "..." : str;
+    return str?.length > n ? str.substr(0, n - 1) + "..." : str;
   }
 
   return (
@@ -50,9 +50,11 @@ function Banner() {
           <button className="banner__button">Play</button>
           <button className="banner__button">My List</button>
         </div>
-        <h1 className="banner__description">{truncate(movie?.overview, 150)}</h1>
+        <h1 className="banner__description">
+          {truncate(movie?.overview, 150)}
+        </h1>
       </div>
-	  <div className="banner--fadeBottom" />
+      <div className="banner--fadeBottom" />
     </header>
   );
 }
