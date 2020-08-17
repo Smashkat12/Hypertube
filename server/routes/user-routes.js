@@ -27,7 +27,11 @@ router.post("/login", (req, res, next) => {
   })(req, res, next);
 });
 
-
+//logout
+router.get('/logout', (req, res, next) => {
+	//handle with passport
+	res.send('login out');
+})
 //registration
 router.post("/register", (req, res) => {
   User.findOne({ email: req.body.email }, async (err, doc) => {
