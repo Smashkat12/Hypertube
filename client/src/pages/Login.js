@@ -51,6 +51,7 @@ const SignIn = () => {
   const classes = useStyles();
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
+  const [data, setData] = useState(null);
 
   const login = (e) => {
     e.preventDefault();
@@ -62,7 +63,9 @@ const SignIn = () => {
       },
       withCredentials: true,
       url: "http://localhost:5000/login",
-    }).then((res) => console.log(res));
+    }).then((res) => {
+      console.log(res);
+    });
   };
   const getUser = (e) => {
     e.preventDefault();
@@ -70,7 +73,7 @@ const SignIn = () => {
       method: "GET",
       withCredentials: true,
       url: "http://localhost:5000/user",
-    }).then((res) => console.log(res));
+    }).then((res) => setData(res.data));
   };
 
   return (
@@ -134,16 +137,19 @@ const SignIn = () => {
             </Grid>
           </Grid>
         </form>
-        <Button
-          type="submit"
-          fullWidth
-          variant="contained"
-          color="primary"
-          className={classes.submit}
-          onClick={getUser}
-        >
-          Get User
-        </Button>
+        <div>
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+            onClick={getUser}
+          >
+            Get User
+          </Button>
+          {data ? <h2>Welcome Back {data.username}</h2> : null}
+        </div>
       </div>
       <Box mt={8}>
         <Copyright />
