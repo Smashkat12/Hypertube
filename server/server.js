@@ -8,6 +8,7 @@ const bcrypt = require("bcryptjs");
 const session = require("express-session");
 const bodyParser = require("body-parser");
 const User = require("./user");
+const userRouter = require('./routes/user-routes');
 
 /* ****************************************************END OF IMPORTS **************************************************** */
 
@@ -48,52 +49,11 @@ app.use(
 app.use(cookieParser("secretsource"));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use('/users', userRouter);
 require("./passportConfig")(passport); //pass same instance of passport to be used in config.
 
 /* ****************************************************END OF MIDDLEWARE **************************************************** */
 
-/* Routes */
-
-app.get("/user", (req, res) => {
-  //When the logIn() operation completed / once authenticated, user obj will be store in req.user.
-  res.send(req.user);
-});
-
-app.post("/login", (req, res, next) => {
-  passport.authenticate('local', (err, user, info) => {
-    if (err) throw err;
-    if (!user) res.send('No User Found');
-    else {
-      //Passport exposes a logIn() function on req
-
-      req.logIn(user, (err) => {
-        if (err) throw err;
-        res.send("Authentication Successful");
-        console.log(req.user);
-      });
-    }
-  })(req, res, next);
-});
-
-app.post("/register", (req, res) => {
-  User.findOne({ email: req.body.email }, async (err, doc) => {
-    if (err) throw err;
-    if (doc) res.send("User Already Exist");
-    if (!doc) {
-      const hashedPassword = await bcrypt.hash(req.body.password, 10);
-      const newUser = new User({
-        firstname: req.body.firstname,
-        lastname: req.body.lastname,
-        email: req.body.email,
-        password: hashedPassword,
-      });
-      await newUser.save();
-      res.send("User created");
-    }
-  });
-});
-
-/* ****************************************************END OF ROUTES **************************************************** */
 
 /* Start server */
 app.listen(PORT, () => {
