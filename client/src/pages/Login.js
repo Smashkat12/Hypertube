@@ -62,7 +62,7 @@ const SignIn = () => {
         password: loginPassword,
       },
       withCredentials: true,
-      url: "http://localhost:5000/login",
+      url: "http://localhost:5000/users/login",
     }).then((res) => {
       console.log(res);
     });
@@ -72,8 +72,12 @@ const SignIn = () => {
     axios({
       method: "GET",
       withCredentials: true,
-      url: "http://localhost:5000/user",
-    }).then((res) => setData(res.data));
+      url: "http://localhost:5000/users/user",
+    }).then((res) => {
+		
+		setData(res.data);
+		console.log(data);
+	});
   };
 
   return (
@@ -148,7 +152,7 @@ const SignIn = () => {
           >
             Get User
           </Button>
-          {data ? <h2>Welcome Back {data.username}</h2> : null}
+          {data ? <h2>{data.data}</h2> : null}
         </div>
       </div>
       <Box mt={8}>

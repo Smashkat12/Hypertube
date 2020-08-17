@@ -67,7 +67,7 @@ const SignUp = () => {
         password: registerPassword,
       },
       withCredentials: true,
-      url: "http://localhost:5000/register",
+      url: "http://localhost:5000/users/register",
     }).then((res) => console.log(res));
   };
 
